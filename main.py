@@ -10,6 +10,6 @@ spark = SparkSession.builder \
 df = spark.read.csv('data/input/users/load.csv', header=True)
 
 windowId = Window.partitionBy('id').orderBy(f.col('update_date').desc())
-df.withColumn("row", f.row_number().over(windowId)).filter(f.col('row') == 1).drop('row').show()
+df = df.withColumn("row", f.row_number().over(windowId)).filter(f.col('row') == 1).drop('row')
 
 df.write.parquet('data/output/users')

@@ -54,8 +54,9 @@ docker run -v $PWD/data:/app/data -it cognitivo
 Me chamou atenção a decisão consciente do formato de saída. Estou habituado a utilizar `parquet` e aproveitei a oportunidade de explorar as opções que o `pyspark` nos permite usar.
 
 Além do `parquet`, podemos usar também o formato `orc`. Após uma breve pesquisa encontrei sugestões a favor do `orc`: 
- - [Difference Between ORC and Parquet](http://www.differencebetween.net/technology/difference-between-orc-and-parquet/)
- - [Demystify Hadoop Data Formats: Avro, ORC, and Parquet](https://towardsdatascience.com/demystify-hadoop-data-formats-avro-orc-and-parquet-e428709cf3bb)
+
+- [Difference Between ORC and Parquet](http://www.differencebetween.net/technology/difference-between-orc-and-parquet/)
+- [Demystify Hadoop Data Formats: Avro, ORC, and Parquet](https://towardsdatascience.com/demystify-hadoop-data-formats-avro-orc-and-parquet-e428709cf3bb)
 
 Mas não fiquei satisfeito apenas com a pesquisa e decidi fazer um benchmark. Utilizando `orc` e `parquet` nas compressões que já disponíveis na imagem docker que são
 

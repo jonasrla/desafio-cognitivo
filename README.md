@@ -58,7 +58,7 @@ Além do `parquet`, podemos usar também o formato `orc`. Após uma breve pesqui
 - [Difference Between ORC and Parquet](http://www.differencebetween.net/technology/difference-between-orc-and-parquet/)
 - [Demystify Hadoop Data Formats: Avro, ORC, and Parquet](https://towardsdatascience.com/demystify-hadoop-data-formats-avro-orc-and-parquet-e428709cf3bb)
 
-Mas não fiquei satisfeito apenas com a pesquisa e decidi fazer um benchmark. Utilizando `orc` e `parquet` nas compressões que já disponíveis na imagem docker que são
+Mas não fiquei satisfeito apenas com a pesquisa e decidi fazer um benchmark utilizando `orc` e `parquet` nas compressões que já disponíveis na imagem docker que são
 
 ```json
 {
@@ -76,13 +76,13 @@ Mas não fiquei satisfeito apenas com a pesquisa e decidi fazer um benchmark. Ut
 }
 ```
 
-Foram criados arquivos de 300K linhas assim podemos observar melhor as variações. Cada linha é lida 30 vezes tomando o cuidado de forçar a leitura executando um `collect()` e limpar o cache após a leitura.
+No script `experiment/setup.py`, foram criados arquivos de 300K linhas assim podemos observar melhor as variações. No script `experiment/profiler.py` Cada arquivo é lido 30 vezes tomando o cuidado de forçar a leitura executando um `collect()` e limpar o cache após cada leitura.
 
 Os dados do experimento estão em `data/experiment/`. Os arquivos `users_<tipo>_<compressão>` são os arquivos sample utilizados no experimento, `result` contém o tempo de cada execução de cada tipo e compressão e `report` contém a tabela que baseou a decisão.
 
-A criação do `report` envolveu uma breve limpeza, pois a primeira execução, por exemplo é mais custosa que as demais, então deveria ser levado em conta, então para limpar essa e demais pontos fora da curva ignoramos todas as execução fora do intervalo de 3 desvios padrões acima ou abaixo.
+No script `experiment/analytics`, é feita a criação do `report` que envolveu uma breve limpeza, pois a primeira execução da leitura, por exemplo é mais custosa que as demais, então deve-se levar em conta, então para limpar esse e os demais pontos fora da curva ignoramos todas as execução fora do intervalo de 3 desvios padrões acima ou abaixo.
 
-O resultado do experimento resultou na tabela
+O resultado do experimento pode ser acompanhado na tabela:
 
 type|compression|time_elapsed|standard_deviation
 ---|---|---|---

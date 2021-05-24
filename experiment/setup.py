@@ -22,7 +22,7 @@ data = [
                'age': randrange(20, 81),
                'create_date': fake.date_time_between('-30M', '-10d')
            }
-           for i in range(1, 100001)
+           for i in range(1, 300001)
        ]
 
 [d.update({

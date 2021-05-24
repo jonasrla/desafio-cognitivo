@@ -1,5 +1,6 @@
 from random import randrange
 from datetime import datetime
+import json
 
 from faker import Faker
 from pyspark.sql import SparkSession
@@ -31,4 +32,14 @@ data = [
 
 df = spark.createDataFrame(data)
 
-df.coalesce(1).write.parquet('data/experiment/users')
+with open('parameters.json', 'r') as f:
+    parameters = json.load(f)
+
+parquet_compression = parameters['parquet']
+orc_compression = parameters['orc']
+
+for compression in parquet_compression:
+    df.coalesce(1).write.parquet(f'data/experiment/users_parquet_{compression}', compression=compression)
+
+for compression in orc_compression:
+    df.coalesce(1).write.orc(f'data/experiment/users_orc_{compression}', compression=compression)

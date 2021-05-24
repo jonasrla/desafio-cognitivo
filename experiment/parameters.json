@@ -1,0 +1,13 @@
+{
+    "parquet": [
+        "none",
+        "uncompressed",
+        "snappy",
+        "gzip"
+    ],
+    "orc": [
+        "none",
+        "snappy",
+        "zlib"
+    ]
+}

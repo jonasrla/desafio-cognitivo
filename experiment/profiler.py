@@ -39,4 +39,4 @@ for type, compressions in parameters.items():
                 }
                 for i in range(30)])
 
-spark.createDataFrame(experiment).coalesce(1).write.csv('data/experiment/results')
+spark.createDataFrame(experiment).coalesce(1).write.csv('data/experiment/results', header=True)
